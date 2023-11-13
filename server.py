@@ -15,7 +15,7 @@ def encrypt(data, key=shared_secret):
     return bytes(a^b for a,b in zip(data,key))
 
 
-def do_work(data):
+def process_request(data):
     print(f'Raw data is {data}')
     decrypted = encrypt(data,shared_secret)
     print(f'Decrypted {decrypted}')
@@ -34,7 +34,7 @@ def main():
             if not data:
                 break
             else:
-                response = do_work(data)
+                response = process_request(data)
                 listener.sendto(response,addr)
 
 
